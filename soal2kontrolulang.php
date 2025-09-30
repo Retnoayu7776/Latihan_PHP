@@ -1,56 +1,88 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>20 Contoh Kasus Penggunaan Logika Perulangan</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background: #f9f9f9;
-        }
-        h2 {
-            color: darkblue;
-        }
-        .box {
-            background: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        ul {
-            line-height: 1.8;
-        }
-    </style>
-</head>
-<body>
-    <h2>Tugas Pemrograman PHP</h2>
+<?php
+// Data nama dan nilai beberapa mahasiswa
+$mahasiswa = [
+    ["nama" => "Retno", "nilai" => 85],
+    ["nama" => "Ayu", "nilai" => 72],
+    ["nama" => "Ambar", "nilai" => 58],
+    ["nama" => "Sari", "nilai" => 45],
+    ["nama" => "Budi", "nilai" => 30]
+];
 
-    <div class="box">
-        <h3>20 Contoh Kasus Penggunaan Logika Perulangan dan Kontrol</h3>
+echo "<h2>Daftar Nilai Mahasiswa dan Grade</h2>";
+echo "<table border='1' cellpadding='8' cellspacing='0'>
+        <tr>
+            <th>Nama</th>
+            <th>Nilai</th>
+            <th>Grade</th>
+        </tr>";
+
+// Perulangan untuk menampilkan semua mahasiswa
+foreach($mahasiswa as $mhs) {
+    $nilai = $mhs["nilai"];
+    $grade = "";
+
+    if($nilai >= 80 && $nilai <= 100) {
+        $grade = "A";
+    } elseif($nilai >= 61 && $nilai <= 79) {
+        $grade = "B";
+    } elseif($nilai >= 51 && $nilai <= 60) {
+        $grade = "C";
+    } elseif($nilai >= 41 && $nilai <= 50) {
+        $grade = "D";
+    } elseif($nilai >= 0 && $nilai <= 40) {
+        $grade = "E";
+    } else {
+        $grade = "Tidak valid";
+    }
+
+    echo "<tr>
+            <td>".$mhs["nama"]."</td>
+            <td>".$nilai."</td>
+            <td>".$grade."</td>
+          </tr>";
+}
+
+echo "</table>";
+?>
+
+<?php
+echo "<h2>Jawaban Soal Nomor 2</h2>";
+echo "<p>Logika perulangan dan kontrol banyak digunakan pada berbagai kasus di dunia pemrograman. Beberapa contohnya:</p>";
+
+echo "<ul>";
+echo "<li><b>Menentukan grade mahasiswa berdasarkan nilai</b>
         <ul>
-            <li>Menampilkan daftar nilai mahasiswa dalam satu kelas.</li>
-            <li>Membatasi jumlah percobaan login (misalnya hanya 3 kali).</li>
-            <li>Menghitung faktorial sebuah bilangan.</li>
-            <li>Menghitung deret aritmatika atau geometri.</li>
-            <li>Menampilkan data dari database (misalnya daftar produk di toko online).</li>
-            <li>Menampilkan tabel perkalian (misalnya 1×1 sampai 10×10).</li>
-            <li>Menentukan bilangan ganjil atau genap dalam rentang tertentu.</li>
-            <li>Mencetak pola bintang (*) untuk latihan algoritma.</li>
-            <li>Menjumlahkan seluruh elemen dalam sebuah array.</li>
-            <li>Mencari nilai maksimum dan minimum dalam data nilai.</li>
-            <li>Menghitung rata-rata nilai mahasiswa dalam satu kelas.</li>
-            <li>Menampilkan daftar menu aplikasi yang berulang sampai pengguna keluar.</li>
-            <li>Menghitung total harga belanjaan dalam keranjang belanja.</li>
-            <li>Membuat sistem antrian (queue) sederhana.</li>
-            <li>Menampilkan halaman hasil pencarian dengan pagination (halaman 1, 2, 3, dst).</li>
-            <li>Menghitung jumlah kata atau huruf dalam sebuah kalimat.</li>
-            <li>Menampilkan kalender sederhana (tanggal 1–30/31).</li>
-            <li>Mengatur jumlah baris tabel secara dinamis di web.</li>
-            <li>Melakukan simulasi undian/lotre dengan perulangan acak.</li>
-            <li>Mengecek apakah sebuah bilangan adalah bilangan prima.</li>
+            <li>Misalnya: 0–40 = E, 41–50 = D, 51–60 = C, 61–79 = B, 80–100 = A.</li>
+            <li>Gunakan <code>if–else</code> (kontrol) untuk menentukan grade, dan perulangan untuk mengecek banyak mahasiswa sekaligus.</li>
         </ul>
-    </div>
-</body>
-</html>
+      </li>";
+
+echo "<li><b>Membatasi percobaan login</b>
+        <ul>
+            <li>Misalnya: user hanya boleh mencoba <b>3 kali</b> login. Jika salah terus, akun terkunci.</li>
+            <li>Gunakan perulangan untuk membatasi percobaan dan <code>if</code> untuk cek benar/salah.</li>
+        </ul>
+      </li>";
+
+echo "<li><b>Menampilkan data dari database</b>
+        <ul>
+            <li>Misalnya: daftar produk di toko online, daftar mahasiswa dalam kelas, daftar nilai ujian.</li>
+            <li>Gunakan perulangan <code>foreach</code> atau <code>while</code> untuk menampilkan semua data.</li>
+        </ul>
+      </li>";
+
+echo "<li><b>Menghitung deret dan faktorial</b>
+        <ul>
+            <li>Misalnya: menghitung faktorial <b>5! = 1×2×3×4×5</b> menggunakan perulangan.</li>
+            <li>Atau menghitung deret bilangan genap dari 2 sampai 100.</li>
+        </ul>
+      </li>";
+
+echo "<li><b>Membuat menu aplikasi interaktif</b>
+        <ul>
+            <li>Misalnya: menu aplikasi yang menampilkan pilihan (1. Lihat data, 2. Tambah data, 3. Keluar).</li>
+            <li>Menu akan terus berulang muncul sampai user memilih <b>Keluar</b>.</li>
+        </ul>
+      </li>";
+echo "</ul>";
+?>
