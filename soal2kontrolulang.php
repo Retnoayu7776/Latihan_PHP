@@ -8,42 +8,91 @@ $mahasiswa = [
     ["nama" => "Budi", "nilai" => 30]
 ];
 
-echo "<h2>Daftar Nilai Mahasiswa dan Grade</h2>";
-echo "<table border='1' cellpadding='8' cellspacing='0'>
-        <tr>
-            <th>Nama</th>
-            <th>Nilai</th>
-            <th>Grade</th>
-        </tr>";
+// Fungsi untuk menentukan grade
+function tentukanGrade($nilai) {
+    if($nilai >= 80 && $nilai <= 100) {
+        return "A";
+    } elseif($nilai >= 61 && $nilai <= 79) {
+        return "B";
+    } elseif($nilai >= 51 && $nilai <= 60) {
+        return "C";
+    } elseif($nilai >= 41 && $nilai <= 50) {
+        return "D";
+    } elseif($nilai >= 0 && $nilai <= 40) {
+        return "E";
+    } else {
+        return "Tidak valid";
+    }
+}
 
-// Perulangan untuk menampilkan semua mahasiswa
+// 1. Perulangan FOR
+echo "<h2>Daftar Nilai Mahasiswa (Perulangan FOR)</h2>";
+echo "<table border='1' cellpadding='8' cellspacing='0'>
+        <tr><th>Nama</th><th>Nilai</th><th>Grade</th></tr>";
+for($i=0; $i<count($mahasiswa); $i++) {
+    $nilai = $mahasiswa[$i]["nilai"];
+    $grade = tentukanGrade($nilai);
+    echo "<tr>
+            <td>".$mahasiswa[$i]["nama"]."</td>
+            <td>".$nilai."</td>
+            <td>".$grade."</td>
+          </tr>";
+}
+echo "</table><br>";
+
+
+// 2. Perulangan WHILE
+echo "<h2>Daftar Nilai Mahasiswa (Perulangan WHILE)</h2>";
+echo "<table border='1' cellpadding='8' cellspacing='0'>
+        <tr><th>Nama</th><th>Nilai</th><th>Grade</th></tr>";
+$i=0;
+while($i < count($mahasiswa)) {
+    $nilai = $mahasiswa[$i]["nilai"];
+    $grade = tentukanGrade($nilai);
+    echo "<tr>
+            <td>".$mahasiswa[$i]["nama"]."</td>
+            <td>".$nilai."</td>
+            <td>".$grade."</td>
+          </tr>";
+    $i++;
+}
+echo "</table><br>";
+
+
+// 3. Perulangan DO WHILE
+echo "<h2>Daftar Nilai Mahasiswa (Perulangan DO WHILE)</h2>";
+echo "<table border='1' cellpadding='8' cellspacing='0'>
+        <tr><th>Nama</th><th>Nilai</th><th>Grade</th></tr>";
+$i=0;
+do {
+    $nilai = $mahasiswa[$i]["nilai"];
+    $grade = tentukanGrade($nilai);
+    echo "<tr>
+            <td>".$mahasiswa[$i]["nama"]."</td>
+            <td>".$nilai."</td>
+            <td>".$grade."</td>
+          </tr>";
+    $i++;
+} while($i < count($mahasiswa));
+echo "</table><br>";
+
+
+// 4. Perulangan FOREACH
+echo "<h2>Daftar Nilai Mahasiswa (Perulangan FOREACH)</h2>";
+echo "<table border='1' cellpadding='8' cellspacing='0'>
+        <tr><th>Nama</th><th>Nilai</th><th>Grade</th></tr>";
 foreach($mahasiswa as $mhs) {
     $nilai = $mhs["nilai"];
-    $grade = "";
-
-    if($nilai >= 80 && $nilai <= 100) {
-        $grade = "A";
-    } elseif($nilai >= 61 && $nilai <= 79) {
-        $grade = "B";
-    } elseif($nilai >= 51 && $nilai <= 60) {
-        $grade = "C";
-    } elseif($nilai >= 41 && $nilai <= 50) {
-        $grade = "D";
-    } elseif($nilai >= 0 && $nilai <= 40) {
-        $grade = "E";
-    } else {
-        $grade = "Tidak valid";
-    }
-
+    $grade = tentukanGrade($nilai);
     echo "<tr>
             <td>".$mhs["nama"]."</td>
             <td>".$nilai."</td>
             <td>".$grade."</td>
           </tr>";
 }
-
 echo "</table>";
 ?>
+
 
 <?php
 echo "<h2>Jawaban Soal Nomor 2</h2>";
